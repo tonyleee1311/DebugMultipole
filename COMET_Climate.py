@@ -34,6 +34,8 @@ if __name__ == '__main__':
     edge_filt = 0
     loaddir = os.getcwd()
     data = sio.loadmat(loaddir + '/psl_NCEP2_C12_1979_2014_73x144_0.8_50_'+str(tau)+'.mat')
+    #print("This is data")
+    #print(data)
     InputTs = data['FinalTsData']
     InputTs = statm.zscore(InputTs,axis=0)
     CorrMat = np.corrcoef(InputTs,rowvar=0)
@@ -42,7 +44,7 @@ if __name__ == '__main__':
     
     group_sz = 10000
     [FinalMPList,FinalLEVList,FinalLEVGList,FinalSzList] = COMET.COMET_EXT(CorrMat,sigma,delta,edge_filt,group_sz)
-    print "Total number of multipoles found for mu = " + str(edge_filt) + " is : "+str(len(FinalMPList)) 
+    print("Total number of multipoles found for mu = " + str(edge_filt) + " is : "+str(len(FinalMPList)))
 
 #    [FinalMPList,FinalLEVList,FinalLEVGList,FinalSzList] = CLIQC.CLIQ_COMPLETE(CorrMat,delta,edge_filt)
 #    print "Total number of multipoles found for mu = " + str(edge_filt) + " is : "+str(len(FinalMPList)) 

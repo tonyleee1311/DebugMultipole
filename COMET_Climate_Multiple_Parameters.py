@@ -68,6 +68,6 @@ if __name__ == '__main__':
                 file_str2 = '_mu_'+str(edge_filt)+'_sigma_'+str(sigma)+'_delta_'+str(delta)                                    
                 saveData = {'FinalMPList':FinalMPList,'FinalLEVList':FinalLEVList,'FinalLEVGList':FinalLEVGList,'FinalSzList':FinalSzList}
                 sio.savemat(savedir+'COMET_Multipoles_'+file_str1+file_str2,saveData,appendmat=True)
-                print "sigma:{}, delta:{}, mu:{}, NumMultipoles:{}, TotalTime:{}".format(sigma,delta,edge_filt,len(FinalMPList),t_end-t_beg)
+                print("sigma:{}, delta:{}, mu:{}, NumMultipoles:{}, TotalTime:{}".format(sigma,delta,edge_filt,len(FinalMPList),t_end-t_beg))
 
     

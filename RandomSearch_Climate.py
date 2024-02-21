@@ -53,7 +53,7 @@ def brute_search(CorrMat,sz,levgth,sigma):
             AllLEVGs.append(levg)
         if np.remainder(count,10000)==0:
             t2 = time.time()
-            print "count = :"+str(count)+" Time Elapsed:" + str(t2-t1) + " seconds"
+            print("count = :"+str(count)+" Time Elapsed:" + str(t2-t1) + " seconds")
  
     return [AllMPs,AllLEVs,AllLEVGs]
     
@@ -108,11 +108,11 @@ def random_search_parallel2(CorrMat,minsz1,minsz2,time_lim,AllSigma,AllDelta):
             NewSet = list(np.random.choice(num_ts,sz,replace=True))       
             ChnkCombs.append(NewSet)
         GroupSz = 20000 #10**5
-        print "GroupSz = " +str(GroupSz)
+        print("GroupSz = " +str(GroupSz))
         AllGroups = []
         OtherInputs = [CorrMat,levgth,sigma]
         AllGroupOutput = pool.map(brute_search_group, itertools.izip(AllGroups,itertools.repeat(OtherInputs)))                      
-        print "Chunk Finished"
+        print("Chunk Finished")
         AllGroupCombined = sum(AllGroupOutput,[])
         if len(AllGroupCombined)>0:            
             ChunkMPsTup,ChunkLEVsTup,ChunkLEVGsTup = zip(*sum(AllGroupOutput,[]))
@@ -121,9 +121,9 @@ def random_search_parallel2(CorrMat,minsz1,minsz2,time_lim,AllSigma,AllDelta):
             AllLEVGs = AllLEVGs + list(ChunkLEVGsTup)
         DeltaT = time.time() - t1
         DeltaU = time.time() - LastUpdate
-        print "DeltaT = {}, NumMPs = {}".format(DeltaT,len(AllMPs))
+        print("DeltaT = {}, NumMPs = {}".format(DeltaT,len(AllMPs)))
         if DeltaU > UpdateInt:
-            print "Update Time!!"
+            print("Update Time!!")
             generate_final_output(AllSigma,AllDelta,AllMPs,AllLEVs,AllLEVGs)
             LastUpdate = time.time()
         
@@ -144,7 +144,7 @@ def generate_final_output(AllSigma,AllDelta,RndMPs,RndLEVs,RndLEVGs):
             [FinalRndMPs,FinalRndLEVs,FinalRndLEVGs,FinalRndSzList]= COMETA.remove_non_maximals(FinalRndMPs,FinalRndLEVs,FinalRndLEVGs,CorrMat,sigma,delta)            
             NumRndMPs.append(len(FinalRndMPs))
             ParamCombos.append([sigma,delta])        
-            print "sigma = {}, delta = {}, no. of multipoles = {}".format(sigma,delta,len(FinalRndMPs))
+            print("sigma = {}, delta = {}, no. of multipoles = {}".format(sigma,delta,len(FinalRndMPs)))
             savedir = os.getcwd()+'/MultipolesClimate/'
             mkdirnotex(savedir)
             file_str1 = 'psl_NCEP2_C12_1979_2014_73x144_0.8_50_'+str(tau)
@@ -172,5 +172,5 @@ if __name__ == '__main__':
     t1 = time.time()
     [RndMPs,RndLEVs,RndLEVGs] = random_search_parallel2(CorrMat,minsz1,minsz2,time_lim,AllSigma,AllDelta)
     t2 = time.time()
-    print "Random Search Completed for {} "+str(t2-t1)+" seconds"
+    print("Random Search Completed for {} "+str(t2-t1)+" seconds")
     

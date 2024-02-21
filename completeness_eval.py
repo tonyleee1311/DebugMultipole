@@ -139,7 +139,7 @@ for s in range(len(AllSigma)):
         else:
             FinalRndMPs,FinalRndLEVs,FinalRndLEVGs = [],[],[]
 
-        print "HELLO"
+        print("HELLO")
         # Generate Pseudo-set
         AllMPs = FinalBrutMPs + FinalMPList1 + FinalBseMPs + FinalRndMPs
         AllLEVs = FinalBrutLEVs + FinalLEVList1 + FinalBseLEVs + FinalRndLEVs
@@ -153,7 +153,7 @@ for s in range(len(AllSigma)):
         [MissedMPsLASSO,_] = COMP.get_MPs_of_M1_missed_by_M2_ALTER(FinalSetMPs,FinalSetLEVs,FinalBseMPs,FinalBseLEVs)               
         TotalMissMPFracLASSO = np.divide(len(MissedMPsLASSO),float(len(FinalSetMPs)))
         
-        print "Total Completeness at sigma = {}, delta = {}  is {} ".format(sigma, delta, 1-TotalMissMPFracCOMET)
+        print("Total Completeness at sigma = {}, delta = {}  is {} ".format(sigma, delta, 1-TotalMissMPFracCOMET))
         CompletenessCOMET.append(round(1-TotalMissMPFracCOMET,2))
         CompletenessLASSO.append((1-TotalMissMPFracLASSO))
         ParamCombo.append([sigma,delta])

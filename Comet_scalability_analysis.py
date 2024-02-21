@@ -66,10 +66,10 @@ if __name__ == '__main__':
                     
                     group_sz = 1000
                     [FinalMPList,FinalLEVList,FinalLEVGList,FinalSzList] = COMETA.COMET_EXT(CorrMat,sigma,delta,edge_filt,group_sz,GraphStr)
-                    print "Total number of multipoles found for mu = " + str(edge_filt) + " is : "+str(len(FinalMPList)) 
+                    print("Total number of multipoles found for mu = " + str(edge_filt) + " is : "+str(len(FinalMPList)))
                     t2 = time.time()
                     AllTimeComet[i] = t2-t1
-                    print "sigma: {}, delta: {}, mu: {}, AllTimeComet[{}] = {}".format(sigma,delta,edge_filt,i,AllTimeComet[i])
+                    print("sigma: {}, delta: {}, mu: {}, AllTimeComet[{}] = {}".format(sigma,delta,edge_filt,i,AllTimeComet[i]))
                 
           
                 savedir = os.getcwd()+'/ScalabilityResults/'

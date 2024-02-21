@@ -238,13 +238,13 @@ def COMET_EXT(CorrMat,sigma,delta,edge_filt,group_sz,GraphStr):
     t2 = time.time()
 
 
-    print "Time Elapsed in generating cliques of GraphF:"+str(t2-t1) + " seconds"
-    print "Total Cliques Obtained: "+str(len(cliques_tmp))   
+    print("Time Elapsed in generating cliques of GraphF:"+str(t2-t1) + " seconds")
+    print("Total Cliques Obtained: "+str(len(cliques_tmp)) )
     
     # Remove Duplicate cliques 
 #    pdb.set_trace()
     cliques_gf = CLIQ.remove_duplicate_cliqs_2(cliques_tmp[2:],num_ts)   
-    print "Total Cliques Obtained After Removing Duplicate Cliques: "+str(len(cliques_gf))   
+    print("Total Cliques Obtained After Removing Duplicate Cliques: "+str(len(cliques_gf)))
 #    pdb.set_trace()
     # Find multipoles with strong linear gain from the obtained cliques
     t1 = time.time()
@@ -252,7 +252,7 @@ def COMET_EXT(CorrMat,sigma,delta,edge_filt,group_sz,GraphStr):
 
     [AllMPs,AllLEVs,AllLEVGs,AllSizes] = find_good_multipoles_complete_parallel(cliques_gf,CorrMat,sigma,delta,group_sz)
     t2 = time.time()
-    print "Time Elapsed in finding {} good MPs:{} seconds".format(len(AllMPs),t2-t1)
+    print("Time Elapsed in finding {} good MPs:{} seconds".format(len(AllMPs),t2-t1))
 
     
     # REMOVE DUPLICATE MULTIPOLES
@@ -261,10 +261,10 @@ def COMET_EXT(CorrMat,sigma,delta,edge_filt,group_sz,GraphStr):
 #    [FinalMPList,FinalLEVList,FinalLEVGList,FinalSzList] = MISC.remove_redundant_multipoles_alter_parallel_recursive(AllMPs,AllLEVs,AllLEVGs)
 #    [FinalMPList,FinalLEVList,FinalLEVGList,FinalSzList] = MISC.remove_redundant_multipoles_alter(AllMPs,AllLEVs,AllLEVGs)
     t2 = time.time()
-    print "Time Elapsed in eliminating non-maximal/duplicate MPs:"+str(t2-t1) + " seconds"
+    print("Time Elapsed in eliminating non-maximal/duplicate MPs:"+str(t2-t1) + " seconds")
 #    pdb.set_trace()
     t_end = time.time()
-    print "Total Time for CLIQ COMPLETE: " + str(t_end - t_st) + "seconds"
+    print("Total Time for CLIQ COMPLETE: " + str(t_end - t_st) + "seconds")
     return [FinalMPList,FinalLEVList,FinalLEVGList,FinalSzList]
     
 

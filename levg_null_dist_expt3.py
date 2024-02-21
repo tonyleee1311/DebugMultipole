@@ -59,7 +59,7 @@ def pval_anal3_SLP(tau,InputSzList,num_rand):
     t1 = time.time()
     [NullLEVs,NullLEVGs] = get_null_dist_expt3(InputSzList,AllDatasets,num_rand)
     t2 = time.time()
-    print "Time taken for Expt3:{} seconds".format(t2-t1)
+    print("Time taken for Expt3:{} seconds".format(t2-t1))
     return [NullLEVs,NullLEVGs]
 
 def pval_anal3_fMRI(State,InputSzList,num_rand):
@@ -78,6 +78,6 @@ def pval_anal3_fMRI(State,InputSzList,num_rand):
     t1 = time.time()    
     [NullLEVs,NullLEVGs] = get_null_dist_expt3(InputSzList,AllDatasets,num_rand)
     t2 = time.time()
-    print "Time taken for Expt3:{} seconds".format(t2-t1)
+    print("Time taken for Expt3:{} seconds".format(t2-t1))
     return [NullLEVs,NullLEVGs]
 

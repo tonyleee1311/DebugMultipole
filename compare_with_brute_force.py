@@ -96,7 +96,7 @@ for s in range(len(AllSigma)):
             [MissedMPs2,MissedMPOrigInds2] = COMP.get_MPs_of_M1_missed_by_M2_ALTER(FinalMPList1,FinalLEVList1,FinalBrutMPs,FinalBrutLEVs)
             TotalMissMPFrac = np.divide(len(MissedMPs),float(len(FinalBrutMPs)+len(MissedMPs2))) 
             PseudoSetSz.append(float(len(FinalBrutMPs)+len(MissedMPs2)))
-            print "Total Completeness at sigma = {}, delta = {},mu = {},  is {} ".format(sigma, delta, edge_filt,1-TotalMissMPFrac)
+            print("Total Completeness at sigma = {}, delta = {},mu = {},  is {} ".format(sigma, delta, edge_filt,1-TotalMissMPFrac))
             Completeness.append(round(1-TotalMissMPFrac,2))
             ParamCombo.append([sigma,delta,edge_filt])
         #[MissMaxEdgWtVec] = BRU.get_maxedgewt_vec(CorrMat,MissedMPs) 

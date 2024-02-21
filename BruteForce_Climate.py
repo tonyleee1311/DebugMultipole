@@ -55,7 +55,7 @@ def brute_search(CorrMat,sz,levgth,sigma):
             AllLEVGs.append(levg)
         if np.remainder(count,10000)==0:
             t2 = time.time()
-            print "count = :"+str(count)+" Time Elapsed:" + str(t2-t1) + " seconds"
+            print("count = :"+str(count)+" Time Elapsed:" + str(t2-t1) + " seconds")
  
     return [AllMPs,AllLEVs,AllLEVGs]
     
@@ -131,14 +131,14 @@ def brute_search_parallel2(CorrMat,sz,sigma,levgth):
             NewSet = list(next(AllCombs))       
             ChnkCombs.append(NewSet)
         n = n + chunk_sz 
-        print "n = "+str(n)
+        print("n = "+str(n))
         GroupSz = min(100000,len(ChnkCombs)/num_proc)
         GroupSz = max(GroupSz,20000)
-        print "GroupSz = " +str(GroupSz)
+        print("GroupSz = " +str(GroupSz))
         AllGroups = get_inputs_for_groups(ChnkCombs,GroupSz)
         OtherInputs = [CorrMat,levgth,sigma]
         AllGroupOutput = pool.map(brute_search_group, itertools.izip(AllGroups,itertools.repeat(OtherInputs)))                      
-        print "Chunk Finished"
+        print("Chunk Finished")
         AllGroupCombined = sum(AllGroupOutput,[])
         if len(AllGroupCombined)>0:            
             ChunkMPsTup,ChunkLEVsTup,ChunkLEVGsTup = zip(*sum(AllGroupOutput,[]))
@@ -192,35 +192,35 @@ if __name__ == '__main__':
             t1 = time.time()
             [Brut3MPs,Brut3LEVs,Brut3LEVGs] = brute_search_parallel2(CorrMat,3,sigma,delta)
             t2 = time.time()
-            print "Time Elapsed for BruteSearch of size 3:"+str(t2-t1)+" seconds"
-            print "Total 3Poles: "+str(len(Brut3MPs))
+            print("Time Elapsed for BruteSearch of size 3:"+str(t2-t1)+" seconds")
+            print("Total 3Poles: "+str(len(Brut3MPs)))
             
             t1 = time.time()
             [Brut4MPs,Brut4LEVs,Brut4LEVGs] = brute_search_parallel2(CorrMat,4,sigma,delta)
             t2 = time.time()
-            print "Time Elapsed for BruteSearch of size 4:"+str(t2-t1)+" seconds"
-            print "Total 4Poles: "+str(len(Brut4MPs))
+            print("Time Elapsed for BruteSearch of size 4:"+str(t2-t1)+" seconds")
+            print("Total 4Poles: "+str(len(Brut4MPs)))
             
             t1 = time.time()
             [Brut5MPs,Brut5LEVs,Brut5LEVGs] = brute_search_parallel2(CorrMat,5,sigma,delta)
             t2 = time.time()
-            print "Time Elapsed for BruteSearch of size 5:"+str(t2-t1)+" seconds"
-            print "Total 5Poles: "+str(len(Brut5MPs))
+            print("Time Elapsed for BruteSearch of size 5:"+str(t2-t1)+" seconds")
+            print("Total 5Poles: "+str(len(Brut5MPs)))
             
             t1= time.time()
             MaxEdgWt3 = get_maxedgewt_vec(CorrMat,Brut3MPs)
             t2 = time.time()
-            print "Time Elapsed for IsNegCliq3:"+str(t2-t1)+" seconds"
+            print("Time Elapsed for IsNegCliq3:"+str(t2-t1)+" seconds")
             
             t1= time.time()
             MaxEdgWt4 = get_maxedgewt_vec(CorrMat,Brut4MPs)
             t2 = time.time()
-            print "Time Elapsed for IsNegCliq4:"+str(t2-t1)+" seconds"
+            print("Time Elapsed for IsNegCliq4:"+str(t2-t1)+" seconds")
             
             t1= time.time()
             MaxEdgWt5 = get_maxedgewt_vec(CorrMat,Brut5MPs)
             t2 = time.time()
-            print "Time Elapsed for IsNegCliq5:"+str(t2-t1)+" seconds"
+            print("Time Elapsed for IsNegCliq5:"+str(t2-t1)+" seconds")
             
             
             t1= time.time()
@@ -229,10 +229,10 @@ if __name__ == '__main__':
             BrutLEVGs = Brut3LEVGs + Brut4LEVGs + Brut5LEVGs
             [FinalBrutMPs,FinalBrutLEVs,FinalBrutLEVGs,FinalBrutSzList] = MISC.remove_redundant_multipoles_alter_parallel(BrutMPs,BrutLEVs,BrutLEVGs)
             t2= time.time()
-            print "Time Elapsed i eliminating non-maximals:"+str(t2-t1)+" seconds"
+            print("Time Elapsed i eliminating non-maximals:"+str(t2-t1)+" seconds")
             t_end = time.time()
             TotalTime = t_end - t_beg
-            print "Total Time = {}".format(TotalTime)
+            print("Total Time = {}".format(TotalTime))
         #    [FinalBrutMPs,FinalBrutLEVs,FinalBrutLEVGs] = MISC.remove_redundant_multipoles_alter(BrutMPs,BrutLEVs,BrutLEVGs)
         #   
             

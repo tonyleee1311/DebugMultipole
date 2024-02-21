@@ -110,7 +110,7 @@ def extract_multipoles_from_cliqgroup(InputLs):
     
     FinalGrpOutput = zip(GrpOutputMPs,GrpOutputLEVs,GrpOutputLEVGs,GrpOutputSizes)
     t2 = time.time()
-    print "Time taken for the group: "+str(t2-t1) + " seconds"
+    print("Time taken for the group: "+str(t2-t1) + " seconds")
     return FinalGrpOutput
 
    
@@ -131,8 +131,10 @@ def find_good_multipoles_complete_parallel(cliques_gf,CorrMat,sigma,delta,group_
     AllGroups = get_inputs_for_groups(InpList,group_sz)
     pool = Pool(processes = num_proc)
     OtherInputs = [delta,sigma]
-    AllGroupOutput = pool.map(extract_multipoles_from_cliqgroup, itertools.izip(AllGroups, itertools.repeat(OtherInputs)))                      
-    pool.close() 
+    AllGroupOutput = pool.map(extract_multipoles_from_cliqgroup, zip(AllGroups, itertools.repeat(OtherInputs)))
+    pool.close()
+    print("This is ALLGroupOutput")
+    print(AllGroupOutput)
     AllMPsTup,AllLEVsTup,AllLEVGsTup,AllSzsTup = zip(*sum(AllGroupOutput,[]))
     AllMPs = list(AllMPsTup)
     AllLEVs  = list(AllLEVsTup)
@@ -174,20 +176,20 @@ def COMET_EXT(CorrMat,sigma,delta,edge_filt,group_sz):
     t1 = time.time()
     cliques_tmp = bk.find_cliques(GraphF)
     t2 = time.time()
-    print "Time Elapsed in generating cliques of GraphF:"+str(t2-t1) + " seconds"
-    print "Total Cliques Obtained: "+str(len(cliques_tmp))   
+    print("Time Elapsed in generating cliques of GraphF:"+str(t2-t1) + " seconds")
+    print("Total Cliques Obtained: "+str(len(cliques_tmp)))
     
     # Remove Duplicate cliques 
 #    cliques_tmp2 = CLIQ.remove_g2_cliques(cliques_tmp,num_ts)
     cliques_gf = CLIQ.remove_duplicate_cliqs(cliques_tmp,num_ts)   
-    print "Total Cliques Obtained After Removing Duplicate Cliques: "+str(len(cliques_gf))   
+    print("Total Cliques Obtained After Removing Duplicate Cliques: "+str(len(cliques_gf)))
 #    pdb.set_trace()
     # Find multipoles with strong linear gain from the obtained cliques
     t1 = time.time()
 #    group_sz = 50000
     [AllMPs,AllLEVs,AllLEVGs,AllSizes] = find_good_multipoles_complete_parallel(cliques_gf,CorrMat,sigma,delta,group_sz)
     t2 = time.time()
-    print "Time Elapsed in finding good MPs:"+str(t2-t1) + " seconds"
+    print("Time Elapsed in finding good MPs:"+str(t2-t1) + " seconds")
 
 #    pdb.set_trace()
     # REMOVE DUPLICATE MULTIPOLES
@@ -195,10 +197,10 @@ def COMET_EXT(CorrMat,sigma,delta,edge_filt,group_sz):
     [FinalMPList,FinalLEVList,FinalLEVGList,FinalSzList] = MISC.remove_redundant_multipoles_alter_parallel(AllMPs,AllLEVs,AllLEVGs)
 #    [FinalMPList,FinalLEVList,FinalLEVGList,FinalSzList] = MISC.remove_redundant_multipoles_alter(AllMPs,AllLEVs,AllLEVGs)
     t2 = time.time()
-    print "Time Elapsed in eliminating non-maximal/duplicate MPs:"+str(t2-t1) + " seconds"
+    print("Time Elapsed in eliminating non-maximal/duplicate MPs:"+str(t2-t1) + " seconds")
     
     t_end = time.time()
-    print "Total Time for CLIQ COMPLETE: " + str(t_end - t_st) + "seconds"
+    print("Total Time for CLIQ COMPLETE: " + str(t_end - t_st) + "seconds")
     return [FinalMPList,FinalLEVList,FinalLEVGList,FinalSzList]
     
 

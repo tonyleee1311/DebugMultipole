@@ -53,47 +53,47 @@ if __name__ == '__main__':
             t1 = time.time()
             [Brut3MPs,Brut3LEVs,Brut3LEVGs] = BRUT.brute_search_parallel2(CorrMat,3,sigma,delta)
             t2 = time.time()
-            print "Time Elapsed for BruteSearch of size 3:"+str(t2-t1)+" seconds"
-            print "Total 3Poles: "+str(len(Brut3MPs))
+            print("Time Elapsed for BruteSearch of size 3:"+str(t2-t1)+" seconds")
+            print("Total 3Poles: "+str(len(Brut3MPs)))
             
             t1 = time.time()
             [Brut4MPs,Brut4LEVs,Brut4LEVGs] = BRUT.brute_search_parallel(CorrMat,4,sigma,delta)
             t2 = time.time()
-            print "Time Elapsed for BruteSearch of size 4:"+str(t2-t1)+" seconds"
-            print "Total 4Poles: "+str(len(Brut4MPs))
+            print("Time Elapsed for BruteSearch of size 4:"+str(t2-t1)+" seconds")
+            print("Total 4Poles: "+str(len(Brut4MPs)))
             
             t1 = time.time()
             [Brut5MPs,Brut5LEVs,Brut5LEVGs] = BRUT.brute_search_parallel2(CorrMat,5,sigma,delta)
             t2 = time.time()
-            print "Time Elapsed for BruteSearch of size 5:"+str(t2-t1)+" seconds"
-            print "Total 5Poles: "+str(len(Brut5MPs))
+            print("Time Elapsed for BruteSearch of size 5:"+str(t2-t1)+" seconds")
+            print("Total 5Poles: "+str(len(Brut5MPs)))
             
             t1 = time.time()
             [Brut6MPs,Brut6LEVs,Brut6LEVGs] = BRUT.brute_search_parallel2(CorrMat,6,sigma,delta)
             t2 = time.time()
-            print "Time Elapsed for BruteSearch of size 6:"+str(t2-t1)+" seconds"
-            print "Total 6Poles: "+str(len(Brut6MPs))
+            print("Time Elapsed for BruteSearch of size 6:"+str(t2-t1)+" seconds")
+            print("Total 6Poles: "+str(len(Brut6MPs)))
             
             
             t1= time.time()
             MaxEdgWt3 = BRUT.get_maxedgewt_vec(CorrMat,Brut3MPs)
             t2 = time.time()
-            print "Time Elapsed for IsNegCliq3:"+str(t2-t1)+" seconds"
+            print("Time Elapsed for IsNegCliq3:"+str(t2-t1)+" seconds")
             
             t1= time.time()
             MaxEdgWt4 = BRUT.get_maxedgewt_vec(CorrMat,Brut4MPs)
             t2 = time.time()
-            print "Time Elapsed for IsNegCliq4:"+str(t2-t1)+" seconds"
+            print("Time Elapsed for IsNegCliq4:"+str(t2-t1)+" seconds")
             
             t1= time.time()
             MaxEdgWt5 = BRUT.get_maxedgewt_vec(CorrMat,Brut5MPs)
             t2 = time.time()
-            print "Time Elapsed for IsNegCliq5:"+str(t2-t1)+" seconds"
+            print("Time Elapsed for IsNegCliq5:"+str(t2-t1)+" seconds")
             
             t1= time.time()
             MaxEdgWt6 = BRUT.get_maxedgewt_vec(CorrMat,Brut6MPs)
             t2 = time.time()
-            print "Time Elapsed for IsNegCliq5:"+str(t2-t1)+" seconds"
+            print("Time Elapsed for IsNegCliq5:"+str(t2-t1)+" seconds")
             
             
         
@@ -103,11 +103,11 @@ if __name__ == '__main__':
             BrutLEVGs = Brut3LEVGs + Brut4LEVGs + Brut5LEVGs + Brut6LEVGs
             [FinalBrutMPs,FinalBrutLEVs,FinalBrutLEVGs,FinalBrutSzList] = MISC.remove_redundant_multipoles_alter_parallel(BrutMPs,BrutLEVs,BrutLEVGs)
             t2= time.time()
-            print "Time Elapsed i eliminating non-maximals:"+str(t2-t1)+" seconds"
+            print("Time Elapsed i eliminating non-maximals:"+str(t2-t1)+" seconds")
             
             t_end = time.time()
             TotalTime = t_end - t_beg
-            print "Total Time = {}".format(TotalTime)
+            print("Total Time = {}".format(TotalTime))
             savedir = os.getcwd()+'/MultipolesfMRI/';
             mkdirnotex(savedir)
             

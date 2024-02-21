@@ -147,7 +147,7 @@ def pval_parallel(FinalMPList,AllDatasets,num_rand):
         AllGroupPvals = pool.map(get_pval_multipole_group, itertools.izip(AllGroups, itertools.repeat(OtherInputs)))                      
         pool.close()
         t2 = time.time()
-        print "Time Elapsed: {} seconds".format(t2-t1)
+        print("Time Elapsed: {} seconds".format(t2-t1))
         #Step 4: Concatenate pvalues from all groups to a single vector and update AllWinPvals 
         AllWinPvals[:,i] = np.concatenate(tuple(AllGroupPvals),axis=0)
 

@@ -30,7 +30,8 @@ def find_cliques_pivot(graph, r, p, x, cliques):
   if len(p) == 0 and len(x) == 0:
     cliques.append(r)
   else:
-    u = iter(p.union(x)).next()
+    u = (iter(p.union(x)))
+    u=next(u)
     for v in p.difference(graph[u]):
       neighs = graph[v]
       find_cliques_pivot(graph, r.union([v]), p.intersection(neighs), x.intersection(neighs), cliques)

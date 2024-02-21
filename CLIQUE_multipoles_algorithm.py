@@ -172,7 +172,7 @@ def find_good_multipoles(cliques_gf,CorrMat,delta):
         NewCorrMat = CorrMat[np.ix_(cliq,cliq)]
         [AllMPs[i],AllLEVs[i],AllLEVGs[i],AllSizes[i]] = extract_multipole(cliq,NewCorrMat,delta)
     t2 = time.time()
-    print "Time Elapsed:"+str(t2-t1) + " seconds"
+    print("Time Elapsed:"+str(t2-t1) + " seconds")
     
     GoodInds = np.where(AllLEVGs>0)[0]
     AllMPs2 = [AllMPs[i] for i in GoodInds]
@@ -201,14 +201,14 @@ def CLIQ_ALGO(CorrMat,delta,edge_filt):
     t1 = time.time()
     [AllMPs2_g1,AllLEVs2_g1,AllLEVGs2_g1,AllSizes2_g1] = find_good_multipoles(cliques_g1,CorrMat,delta)
     t2 = time.time()
-    print "Time Elapsed in finding good neg MPs:"+str(t2-t1) + " seconds"
+    print("Time Elapsed in finding good neg MPs:"+str(t2-t1) + " seconds")
 
     
     # REMOVE DUPLICATE CLIQUES
     t1 = time.time()
     [FinalMPList_g1,FinalLEVList_g1,FinalLEVGList_g1] = MISC.remove_redundant_multipoles_alter(AllMPs2_g1,AllLEVs2_g1,AllLEVGs2_g1)
     t2 = time.time()
-    print "Time Elapsed in eliminating non-maximal/duplicate neg MPs:"+str(t2-t1) + " seconds"
+    print("Time Elapsed in eliminating non-maximal/duplicate neg MPs:"+str(t2-t1) + " seconds")
 
 #    FinalSzs_g1 = np.array([len(x) for x in FinalMPList_g1])
 #    QuadInds_g1 = np.where(FinalSzs_g1==4)[0].tolist()
@@ -236,7 +236,7 @@ def CLIQ_ALGO(CorrMat,delta,edge_filt):
     t1 = time.time()
     cliques_tmp = bk.find_cliques(GraphF)
     t2 = time.time()
-    print "Time Elapsed in generating cliques of GraphF:"+str(t2-t1) + " seconds"
+    print("Time Elapsed in generating cliques of GraphF:"+str(t2-t1) + " seconds")
     
     # Remove Negative cliques that are confined to only first half or second half of vertices
     cliques_gf = remove_neg_cliques(cliques_tmp,num_ts)
@@ -246,14 +246,14 @@ def CLIQ_ALGO(CorrMat,delta,edge_filt):
     t1 = time.time()
     [AllMPs2,AllLEVs2,AllLEVGs2,AllSizes2] = find_good_multipoles(cliques_gf,CorrMat,delta)
     t2 = time.time()
-    print "Time Elapsed in finding good pseudo-neg MPs:"+str(t2-t1) + " seconds"
+    print("Time Elapsed in finding good pseudo-neg MPs:"+str(t2-t1) + " seconds")
 
     
     # REMOVE DUPLICATE MULTIPOLES
     t1 = time.time()
     [FinalMPList_gf,FinalLEVList_gf,FinalLEVGList_gf] = MISC.remove_redundant_multipoles_alter(AllMPs2,AllLEVs2,AllLEVGs2)
     t2 = time.time()
-    print "Time Elapsed in eliminating non-maximal/duplicate pseudo-neg MPs:"+str(t2-t1) + " seconds"
+    print("Time Elapsed in eliminating non-maximal/duplicate pseudo-neg MPs:"+str(t2-t1) + " seconds")
     
     # Quads:
 #    FinalSzs_gf = np.array([len(x) for x in FinalMPList_gf])
@@ -284,7 +284,7 @@ if __name__ == '__main__':
     [FinalMPList,FinalLEVList,FinalLEVGList] = CLIQ_ALGO(CorrMat,delta,edge_filt)
     t_end = time.time()
     
-    print "Total Time for CLIQ FAST: " + str(t_end - t_st) + "seconds"
+    print("Total Time for CLIQ FAST: " + str(t_end - t_st) + "seconds")
  
 
     num_rand = 1000

@@ -120,7 +120,7 @@ def gen_dist_kxk_mats_min_edge(InputLs):
     num_attmp = InputLs[1][1]
     num_resol = InputLs[1][2]
     All_nums = np.arange(min_edge,1,num_resol)
-    print "min_edge = "+str(min_edge)+" sz=" + str(sz) + " num_attmp="+str(num_attmp)
+    print("min_edge = "+str(min_edge)+" sz=" + str(sz) + " num_attmp="+str(num_attmp))
     FinalOutput = []
     
     OtherInputs = [sz,num_attmp]
@@ -150,7 +150,7 @@ if __name__ == "__main__":
     pool.close()
     FinalOutput = sum(FinalOutput,[])
     t2 = time.time()
-    print "Time elapsed:"+str(t2-t1)+"seconds"
+    print("Time elapsed:"+str(t2-t1)+"seconds")
     
     LEVs,LEVGs,MaxEdge = zip(*FinalOutput)
     LEVs = np.asarray(LEVs)

@@ -86,7 +86,7 @@ if __name__ == '__main__':
     
     for i in range(len(AllAlpha)):
         alpha = AllAlpha[i] # Regularization parameter of Graphical LASSO
-        print "alpha ={} ".format(alpha)
+        print("alpha ={} ".format(alpha))
         GL = sk.covariance.GraphicalLasso(alpha = alpha)
         GL.fit(InputTs)
         PrecMat = GL.get_precision()
@@ -101,17 +101,17 @@ if __name__ == '__main__':
 
     
     # Step 4: Calculate LEVs and LEVGs
-    print "Computing LEVs and LEVGs"
+    print("Computing LEVs and LEVGs")
     [AllGLLEVs,AllGLLEVGs] = get_lev_and_levgs_all_cands(AllGLMPs,CorrMat)
     
     
-    print "Now removing non-maximals and duplicates"  
+    print("Now removing non-maximals and duplicates")
     # Filter the ones with poor sigma and delta and then Remove all non-redundant multipoles
     ParamCombo = []
     FinalResults = []
     for sigma in AllSigma:
         for delta in AllDelta:
-            print 'sigma='+str(sigma)+' , delta = '+str(delta)
+            print('sigma='+str(sigma)+' , delta = '+str(delta))
             ParamCombo.append('sigma='+str(sigma)+' , delta = '+str(delta))
             [FiltGLMPs,FiltGLLEVs,FiltGLLEVGs] = filter_multipoles(AllGLMPs,AllGLLEVs,AllGLLEVGs,sigma,delta)
             [FinalMPList,FinalLEVList,FinalLEVGList,FinalSzList] = COMETA.remove_non_maximals(FiltGLMPs,FiltGLLEVs,FiltGLLEVGs,CorrMat,sigma,delta)

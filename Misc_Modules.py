@@ -105,9 +105,9 @@ def remove_redundant_multipoles_alter_parallel_recursive(MPList,LEVList,LEVGList
         NumMPs1 = len(MPList)
         InpList = zip(MPList,LEVList,LEVGList)
         group_sz = min(100000,len(MPList)/num_proc)
-        print "NumMPs1 ={}, group_sz = {}".format(NumMPs1,group_sz)
+        print("NumMPs1 ={}, group_sz = {}".format(NumMPs1,group_sz))
         AllGroups = get_inputs_for_groups(InpList,group_sz)
-        print "num_groups = {}".format(len(AllGroups))
+        print("num_groups = {}".format(len(AllGroups)))
         AllGroupOutput = pool.map(remove_redundant_multipoles_alter_group, AllGroups)                      
         AllMPsTup,AllLEVsTup,AllLEVGsTup,AllSzsTup = zip(*sum(AllGroupOutput,[]))
         MPList = list(AllMPsTup)
@@ -119,7 +119,7 @@ def remove_redundant_multipoles_alter_parallel_recursive(MPList,LEVList,LEVGList
             JobDone  = True
             
     pool.close()
-    print "Final Round NumMPs = {}".format(len(LEVList))        
+    print("Final Round NumMPs = {}".format(len(LEVList)))
     [FinalMPList,FinalLEVList,FinalLEVGList,FinalSzList] = remove_redundant_multipoles_alter(MPList,LEVList,LEVGList)    
     return  [FinalMPList,FinalLEVList,FinalLEVGList,FinalSzList]
 
@@ -134,7 +134,7 @@ def remove_redundant_multipoles(MPList,LEVList,LEVGList):
     t1 = time.time()
     SimMat= np.array([[len(set(MPTuple[j]) - set(MPTuple[i]))==0 for j in range(len(MPTuple))] for i in range(len(MPTuple))],dtype=bool)
     t2 = time.time()
-    print "Time Elapsed: " + str(t2-t1) + " seconds"
+    print("Time Elapsed: " + str(t2-t1) + " seconds")
     
     t1 = time.time()
     FinalZippedLs = []
@@ -150,7 +150,7 @@ def remove_redundant_multipoles(MPList,LEVList,LEVGList):
         SimMat[NbInds][:] = False
         SimMat[:][NbInds] = False
     t2 = time.time()
-    print "Time Elapsed: " + str(t2-t1) + " seconds"    
+    print("Time Elapsed: " + str(t2-t1) + " seconds")
     FinalMPList,FinalLEVList,FinalLEVGList = zip(*FinalZippedLs)
     FinalMPList = list(FinalMPList)
     FinalMPList = [list(x) for x in FinalMPList]
@@ -163,6 +163,7 @@ def get_lev_minors(InpCM):
     NumVars = InpCM.shape[0]
     AllLEVMinors = np.zeros((NumVars,))
     MemList = range(NumVars)
+    MemList= list(MemList)
     for i in MemList: 
         SelMems = MemList[:]       
         SelMems.pop(i)            
@@ -230,7 +231,7 @@ def find_next_level_multipoles(CorrMat,inp_level,sigma,delta,AllMPs):
     if inp_sz==1:          
         NewMPs = [(i,) for i in range(NumPs)] #range(NumPs)
 #        shuffle(NewMPs)
-        print "inp_level={}".format(inp_level)
+        print("inp_level={}".format(inp_level))
         NewLEVs = [1]*NumPs
         NewLEVGs = [float('Inf')]*NumPs
         return [NewLEVs,NewLEVGs,NewMPs]

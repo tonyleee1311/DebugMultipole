@@ -50,7 +50,7 @@ if __name__ == '__main__':
     
     # Calling CoMEtExtended
     [FinalMPList,FinalLEVList,FinalLEVGList,FinalSzList] = COMET.COMET_EXT(CorrMat,sigma,delta,edge_filt,group_sz)
-    print "Total number of multipoles found for mu = " + str(edge_filt) + " is : "+str(len(FinalMPList)) 
+    print("Total number of multipoles found for mu = " + str(edge_filt) + " is : "+str(len(FinalMPList)))
     
     
     

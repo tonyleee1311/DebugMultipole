@@ -84,7 +84,7 @@ def get_MPs_of_M1_missed_by_M2_NOLEV(MPList1,MPList2):
     for i in range(len(MPList1)):
         CurrMP = set(MPList1[i])
 #        CurrLEV = SortedLEV1[i]
-        print i
+        print(i)
         found = False
         for j in range(len(MPList2)):
             CurrMP2 = MPList2[j]
