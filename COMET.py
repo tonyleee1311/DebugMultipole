@@ -132,7 +132,7 @@ def find_good_multipoles_complete_parallel(cliques_gf, CorrMat, sigma, delta, gr
     # print("This is ALLGroupOutput")
     # print(AllGroupOutput)
     AllMPsTup, AllLEVsTup, AllLEVGsTup, AllSzsTup = zip(*sum(AllGroupOutput, []))
-    for i, (a, b, c, d) in enumerate(AllGroupOutput):
+    for i, (a, b, c, d) in enumerate(AllGroupOutput[0]):
         AllMPs += a
         AllLEVs += b
         AllLEVGs += c

@@ -51,14 +51,13 @@ if __name__ == '__main__':
 #    [FinalMPList1,FinalLEVList1,FinalLEVGList1,FinalSzList1] = CLIQC_OLD.CLIQ_COMPLETE(CorrMat,delta,edge_filt)
 #    print "Total number of multipoles found for mu = " + str(edge_filt) + " is : "+str(len(FinalMPList)) 
 #    pdb.set_trace()
-       
     from os.path import expanduser
     home = expanduser("~")
     savedir = os.getcwd()+'/MultipolesClimate/'
     mkdirnotex(savedir)
     file_str1 = 'psl_NCEP2_C12_1979_2014_73x144_0.8_50_'+str(tau)
     file_str2 = '_mu_'+str(edge_filt)+'_sigma_'+str(sigma)+'_delta_'+str(delta)    
-    
+    #a=[1,2,3,4]
 #    pdb.set_trace()
     
     if edge_filt==0:  
