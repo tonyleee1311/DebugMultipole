@@ -86,11 +86,12 @@ def remove_redundant_multipoles_alter_parallel(MPList,LEVList,LEVGList):
     num_proc = 20
     InpList = zip(MPList,LEVList,LEVGList)
     group_sz = min(100000,len(MPList)/num_proc)
-    AllGroups = get_inputs_for_groups(InpList,group_sz)
+    AllGroups = get_inputs_for_groups(list(InpList),group_sz)
     pool = Pool(processes = num_proc)
     AllGroupOutput = pool.map(remove_redundant_multipoles_alter_group, AllGroups)                      
     pool.close() 
     AllMPsTup,AllLEVsTup,AllLEVGsTup,AllSzsTup = zip(*sum(AllGroupOutput,[]))
+
     AllMPsList = list(AllMPsTup)
     AllLEVsList= list(AllLEVsTup)
     AllLEVGsList= list(AllLEVGsTup)
@@ -106,7 +107,7 @@ def remove_redundant_multipoles_alter_parallel_recursive(MPList,LEVList,LEVGList
         InpList = zip(MPList,LEVList,LEVGList)
         group_sz = min(100000,len(MPList)/num_proc)
         print("NumMPs1 ={}, group_sz = {}".format(NumMPs1,group_sz))
-        AllGroups = get_inputs_for_groups(InpList,group_sz)
+        AllGroups = get_inputs_for_groups(list[InpList],group_sz)
         print("num_groups = {}".format(len(AllGroups)))
         AllGroupOutput = pool.map(remove_redundant_multipoles_alter_group, AllGroups)                      
         AllMPsTup,AllLEVsTup,AllLEVGsTup,AllSzsTup = zip(*sum(AllGroupOutput,[]))
